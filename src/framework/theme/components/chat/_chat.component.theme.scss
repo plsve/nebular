@@ -4,9 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-@mixin nb-chat-theme() {
+ @mixin nb-chat-theme() {
 
-  nb-chat {
+  nb-chat, app-custom-chat {
     background-color: nb-theme(chat-background-color);
     border: nb-theme(chat-border);
     border-radius: nb-theme(chat-border-radius);
@@ -63,6 +63,12 @@
     }
   }
 
+  @each $size in nb-get-sizes() {
+    app-custom-chat.size-#{$size} {
+      height: nb-theme(chat-#{$size}-height);
+    }
+  }
+
   @each $status in nb-get-statuses() {
     nb-chat.status-#{$status} {
       .header {
@@ -72,7 +78,16 @@
     }
   }
 
-  nb-chat-message {
+  @each $status in nb-get-statuses() {
+    app-custom-chat.status-#{$status} {
+      .header {
+        background-color: nb-theme(chat-#{$status}-background-color);
+        color: nb-theme(chat-#{$status}-text-color);
+      }
+    }
+  }
+
+  nb-chat-message, app-custom-chat-message {
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: row;
